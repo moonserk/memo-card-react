@@ -60,7 +60,13 @@ let config = {
     ]
   },
   plugins: [
-    new ExtractTextWebpackPlugin('style.css')
+    new ExtractTextWebpackPlugin('style.css'),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default'],
+    })
   ],
   devServer: {
     contentBase: path.resolve(__dirname, './public'),

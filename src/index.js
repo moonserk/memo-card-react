@@ -1,8 +1,21 @@
-require('./assets/stylesheets/style.scss');
-
+ 
+import './assets/stylesheets/style.scss'
+import 'bootstrap'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './app/App.jsx'
+import App from './app/components/App'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import cards from './app/reducers/cards';
+import { addCard } from './app/actions/index';
 
-ReactDOM.render(<App />, document.getElementById('root'))
+let store = createStore(cards)
+
+store.dispatch(addCard("Hello", "Здравствуйте"))
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>, document.getElementById('root'))
+
 
